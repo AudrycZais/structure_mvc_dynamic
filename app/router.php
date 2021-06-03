@@ -1,16 +1,16 @@
 <?php   
-
+use App\Controllers\PostsController;
 
         if (isset($_GET['postID'])){
                 include_once '../app/controllers/postsController.php';
-                showAction($conn, $_GET['postID']);
+                PostsController\showAction($conn, $_GET['postID']);
         
 
         }
 
         else {
                 include_once '../app/controllers/postsController.php';
-                indexAction($conn);
+                PostsController\indexAction($conn);
         }
 
     

@@ -1,10 +1,14 @@
 <?php
 
 
+namespace App\Controllers\PostsController;
+use \App\Models\PostsModel;
 
-    function indexAction(PDO $conn) {
+
+
+    function indexAction(\PDO $conn) {
         include_once '../app/models/postsModel.php';
-        $posts = findAll($conn);
+        $posts = PostsModel\findAll($conn);
 
         GLOBAL $content;
 
@@ -13,15 +17,19 @@
         $content = ob_get_clean();
     }
 
-    function showAction(PDO $conn, int $id) {
+    function showAction(\PDO $conn, int $id) {
         include_once '../app/models/postsModel.php';
-        $post = findOneByID($conn, $id);
+        $post = PostsModel\findOneByID($conn, $id);
 
         include_once '../app/models/tagsModel.php';
-        $tags= findAllByPostId($conn,$id);
+        $tags= \App\Models\AuthorsModel\findAllByPostId($conn,$id);
 
         include_once '../app/models/authorsModel.php';
-        $author = findAuthorByID($conn, $post['author_id']);
+        $author = \App\Models\AuthorsModel\findOneByID($conn, $post['author_id']);
+
+        include_once '../app/models/commentsModel.php';
+
+        $comments = \App\Models\CommentsModel\findAllByPostId($conn, $id);
 
     
         GLOBAL $content;

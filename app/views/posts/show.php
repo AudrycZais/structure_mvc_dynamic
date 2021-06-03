@@ -21,34 +21,7 @@
                 </div>
             </div>
 
-            <?php  include '../app/views/authors/show.php' ?> 
+            <?php  include '../app/views/authors/show.php'; ?> 
 
+            <?php include_once '../app/views/comments/show.php';?>
 
-            <div class="pt-5 mt-5">
-              <h3 class="mb-5">3 Comments</h3>
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  </div>
-                </li>
-
-                <li class="comment">
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  </div>
-                </li>
-
-                <li class="comment">
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  </div>
-                </li>
-              </ul>
-        

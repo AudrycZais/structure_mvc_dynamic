@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\AuthorsModel;
+namespace App\Models\CommentsModel;
 
-function findOneById(\PDO $conn, int $id) :array {
+function findAllByPostId(\PDO $conn, int $id) :array {
         $sql = "SELECT *
-                FROM authors 
+                FROM comments 
                 WHERE id = :id;";
         $rs = $conn->prepare($sql);
         $rs->bindValue(':id', $id, \PDO::PARAM_INT);
         $rs->execute();
-        return $rs->fetch(\PDO::FETCH_ASSOC);
+        return $rs->fetchAll(\PDO::FETCH_ASSOC);
 }
