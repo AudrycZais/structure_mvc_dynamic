@@ -1,41 +1,86 @@
 <?php
+namespace App\Controller\PostsController;
+use App\Model\AuthorModel;
+use App\Model\TagsModel;
+use App\Model\CommentsModel;
+use App\Model\PostsModel;
 
 
-namespace App\Controllers\PostsController;
-use \App\Models\PostsModel;
+/**
+ * 
+ *  ./app/controllers/postsController.php
+ * 
+ */
+
+ /**
+  * indexAction
+  *
+  * @param \PDO $conn
+  * @return void
+  */
+ function indexAction(\PDO $conn){
+    include_once "../app/models/postsModel.php";
+    $posts = PostsModel\findAll($conn);
 
 
+    GLOBAL $content;
+    ob_start();
+    include "../app/views/posts/index.php";
+    $content = ob_get_clean();
+ }
 
-    function indexAction(\PDO $conn) {
-        include_once '../app/models/postsModel.php';
-        $posts = PostsModel\findAll($conn);
+ /**
+  * showAction
+  *
+  * @param \PDO $conn
+  * @param integer $id
+  * @return void
+  */
+ function showAction(\PDO $conn, int $id){
+   include_once "../app/models/postsModel.php";
+   $post = PostsModel\findOneById($conn, $id);
 
-        GLOBAL $content;
+   include_once "../app/models/tagsModel.php";
+   $tags = TagsModel\findAllByPostId($conn, $id);
 
-        ob_start();
-            include '../app/views/posts/index.php';
-        $content = ob_get_clean();
-    }
+   include_once "../app/models/authorModel.php";
+   $author = AuthorModel\findOneById($conn, $post['author_id']);
 
-    function showAction(\PDO $conn, int $id) {
-        include_once '../app/models/postsModel.php';
-        $post = PostsModel\findOneByID($conn, $id);
+   include_once "../app/models/commentsModel.php";
+   $comments = CommentsModel\findAllByPostId($conn, $id);
 
-        include_once '../app/models/tagsModel.php';
-        $tags= \App\Models\AuthorsModel\findAllByPostId($conn,$id);
+   GLOBAL $content;
+   ob_start();
+   include "../app/views/posts/show.php";
+   $content = ob_get_clean();
+ }
 
-        include_once '../app/models/authorsModel.php';
-        $author = \App\Models\AuthorsModel\findOneByID($conn, $post['author_id']);
+/**
+ * contactAction
+ *
+ * @return void
+ */
+ function contactAction(){
+  GLOBAL $content;
+  ob_start();
+  include "../app/views/posts/contact.php";
+  $content = ob_get_clean();
+ }
 
-        include_once '../app/models/commentsModel.php';
+/**
+ * indexByTagAction
+ *
+ * @param \PDO $conn
+ * @param integer $id
+ * @return void
+ */
+ function indexByTagAction(\PDO $conn, int $id){
+  include_once "../app/models/postsModel.php";
+  $posts = PostsModel\findByTagId($conn, $id);
 
-        $comments = \App\Models\CommentsModel\findAllByPostId($conn, $id);
 
-    
-        GLOBAL $content;
-        ob_start();
-        include '../app/views/posts/show.php';
-        $content = ob_get_clean();
-    }
-
-    
+  GLOBAL $content;
+  ob_start();
+  include "../app/views/posts/index.php";
+  $content = ob_get_clean();
+ }

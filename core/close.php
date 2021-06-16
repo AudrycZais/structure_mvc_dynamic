@@ -1,8 +1,9 @@
-<?php  
-/*
-    ../core/close.php
-*/
+<?php 
 
-// Fermeture de la connexion
-    $conn = null;
-    unset($conn);
+/**
+ * 
+ *  ./core/close.php
+ * 
+ */
+
+ unset($conn);

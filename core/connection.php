@@ -1,8 +1,10 @@
-<?php  
-/*
-  ./core/connexion.php 
- */
+<?php
 
+/**
+ * 
+ *  ./core/connection.php
+ * 
+ */
 
 try {
     $conn = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
